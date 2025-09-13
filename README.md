@@ -22,4 +22,5 @@ pip install -r requirements.txt
 Option 2: conda (recommended, ensures MPI works)
 
 conda env create -f environment.yml
+
 conda activate mpi-sgd-env
