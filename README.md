@@ -6,7 +6,7 @@
 
 You can set up the environment in **two ways**:  
 
-Option 1: pip
+**Option 1: pip**
 
 python -m venv venv
 
@@ -19,7 +19,7 @@ venv\Scripts\activate      # (Windows)
 
 pip install -r requirements.txt
 
-Option 2: conda (recommended, ensures MPI works)
+**Option 2: conda (recommended, ensures MPI works)**
 
 conda env create -f environment.yml
 
