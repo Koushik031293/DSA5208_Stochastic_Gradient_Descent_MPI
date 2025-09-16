@@ -1,0 +1,5 @@
+# Ignore local data files
+data/*.csv
+data/*.parquet
+*.parquet
+*.csv
