@@ -2,6 +2,12 @@
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+import hashlib
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # project root
+OUTPUT_DIR = os.path.join(BASE_DIR, "data")
+DATA_DIR = os.path.join(BASE_DIR, "data")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 REQUIRED_COLS = [
         "tpep_pickup_datetime",
@@ -30,7 +36,7 @@ dtype_map = {
 
 #read data file, keep only required columns and set dtypes
 df = pd.read_csv(
-    "../data/nytaxi2022.csv",
+    os.path.join(DATA_DIR, "nytaxi2022.csv"),
     usecols=REQUIRED_COLS,
     dtype=dtype_map,
     na_values=["\\N", "", "NA"], 
@@ -122,16 +128,15 @@ mask = make_mask(df["RatecodeID"], df["fare_per_km"].to_numpy(), df["fare_per_mi
 df = df[mask]
 
 #export cleaned data yayyyyyyy
-df.to_csv("../data/nytaxi2022_cleaned.csv", index=False)
+# df.to_csv("../data/nytaxi2022_cleaned.csv", index=False)
+df.to_csv(os.path.join(OUTPUT_DIR, "nytaxi2022_cleaned.csv"), index=False)
 
 ##########################split function##########################
 #split into train and test set, 70% train, 30% test
-import hashlib
-import numpy as np
-import pandas as pd
+
 
 TRAIN_RATIO = 0.7
-OUTPUT_DIR = "../data/"   # adjust path as needed
+# OUTPUT_DIR = "../data/"   # adjust path as needed
 
 #split function
 def assign_split(keys, train_ratio=TRAIN_RATIO):
@@ -163,12 +168,17 @@ print(f"Train size: {len(train_df):,} rows")
 print(f"Test size:  {len(test_df):,} rows")
 print(f"Train ratio: {len(train_df) / len(df):.3f}")
 
-# Export
-train_df.to_parquet(f"{OUTPUT_DIR}/taxi_train.parquet", index=False)
-test_df.to_parquet(f"{OUTPUT_DIR}/taxi_test.parquet", index=False)
+
+
+# ensure directory exists
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# save parquet
+train_df.to_parquet(os.path.join(OUTPUT_DIR, "taxi_train.parquet"), index=False)
+test_df.to_parquet(os.path.join(OUTPUT_DIR, "taxi_test.parquet"), index=False)
 
 # Optional: also CSV (larger files, slower IO)
-train_df.to_csv(f"{OUTPUT_DIR}/taxi_train.csv", index=False)
-test_df.to_csv(f"{OUTPUT_DIR}/taxi_test.csv", index=False)
+train_df.to_csv(os.path.join(OUTPUT_DIR, "taxi_train.csv"), index=False)
+test_df.to_csv(os.path.join(OUTPUT_DIR, "taxi_test.csv"), index=False)
 
 print("Export complete! Files written to:", OUTPUT_DIR)
