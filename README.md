@@ -5,25 +5,39 @@ You can set up the environment in **two ways**:
 
 **Option 1: pip**
 python -m venv venv
+
 source venv/bin/activate   # (Linux/Mac)
+
 venv\Scripts\activate      # (Windows)
+
 pip install -r requirements.txt
 
 **Option 2: conda (recommended, ensures MPI works)**
 conda env create -f environment.yml
+
 conda activate mpi-sgd-env
 
 ## Repository Structure
 ├── src/
+
 │   ├── prep.py              # data cleaning & split logic
+
 │   └── …
+
 ├── data/                    # place datasets here
+
 │   ├── nytaxi2022_cleaned.csv   # cleansed dataset (shared via OneDrive)
+
 │   ├── taxi_test.csv            # test set (shared via OneDrive)
+
 │   ├── taxi_train.csv           # training set (shared via OneDrive)
+
 │   ├── taxi_test.parquet        # test set (shared via OneDrive)
+
 │   ├── taxi_train.parquet       # training set (shared via OneDrive)
+
 ├── .gitignore
+
 └── README.md
 
 ## Dataset Access
