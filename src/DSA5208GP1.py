@@ -358,11 +358,13 @@ def parse_args():
     p.add_argument("--patience", type=int, default=20, help="Early stopping patience (epochs)")
     return p.parse_args()
 
-def main():
+def main(args=None):
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
 
-    args = parse_args()
+    # Only parse CLI if nothing was passed in
+    if args is None:
+        args = parse_args()
 
     if rank == 0:
         print("Loading parquet…")
