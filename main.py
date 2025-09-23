@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
 import argparse
 import os
 import sys
 from time import time
+import types
 
 # ------------------------------
 # Import project training entry
@@ -14,12 +16,11 @@ if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
 from src.train_mpi_sgd import main as train_main
-import types
+
 
 # ------------------------------
 # CLI
 # ------------------------------
-
 def parse_args():
     ap = argparse.ArgumentParser(description="DSS5208 Project Runner (MPI)")
 
@@ -29,31 +30,46 @@ def parse_args():
     ap.add_argument("--ycol",  default="total_amount",            help="Target column name")
 
     # Model hyperparameters
-    ap.add_argument("--hidden",  type=int, default=64,                     help="Hidden units")
-    ap.add_argument("--act",     choices=["relu","tanh","sigmoid"], default="relu", help="Activation")
-    ap.add_argument("--lr",      type=float, default=1e-3,                 help="Learning rate")
-    ap.add_argument("--batch",   type=int,   default=256,                  help="Mini-batch size")
-    ap.add_argument("--epochs",  type=int,   default=120,                  help="Max epochs")
-    ap.add_argument("--patience",type=int,   default=20,                   help="Early-stopping patience")
+    ap.add_argument("--hidden",   type=int, default=64,                      help="Hidden units (used when not randomising)")
+    ap.add_argument("--act",      choices=["relu","tanh","sigmoid"], default="relu", help="Activation (single run)")
+    def comma_list_floats(x):
+        return [float(v) for v in x.split(",")]
+
+    ap.add_argument("--lr", type=comma_list_floats, default=[1e-3],
+                help="Comma-separated learning rates")
+    ap.add_argument("--batch",    type=int,   default=256,                   help="Mini-batch size (single run)")
+    ap.add_argument("--epochs",   type=int,   default=120,                   help="Max epochs")
+    ap.add_argument("--patience", type=int,   default=20,                    help="Early-stopping patience")
 
     # Outputs
     ap.add_argument("--outdir",        default="results/exp1", help="Directory to write artifacts")
-    ap.add_argument("--save-history",  action="store_true",     help="Save loss_curve.csv")
-    ap.add_argument("--plot-history",  action="store_true",     help="Save loss_curve.png & residuals_hist.png")
+    ap.add_argument("--save-history",  action="store_true",    help="Save loss_curve.csv")
+    ap.add_argument("--plot-history",  action="store_true",    help="Save loss_curve.png & residuals_hist.png")
 
-    # Sweep controls
-    ap.add_argument("--sweep",    action="store_true", help="Run activation x batch grid on current MPI world")
+    # Sweep
+    ap.add_argument("--sweep",    action="store_true", help="Run activation × batch grid on current MPI world")
     ap.add_argument("--acts",     default="relu,tanh,sigmoid", help="Comma-separated activations for sweep")
     ap.add_argument("--batches",  default="32,64,128,256,512", help="Comma-separated batch sizes for sweep")
 
-    # Optional: merge all results.csv after sweep
-    ap.add_argument("--merge-sweep", action="store_true", help="After sweep, merge sub-results into sweep_merged.csv")
+    # Random hidden layer (for sweep only)
+    ap.add_argument("--random-hidden", action="store_true",
+                    help="During --sweep, sample hidden units randomly per (activation,batch) sub-run")
+    ap.add_argument("--hidden-min", type=int, default=32,
+                    help="Min hidden units when --random-hidden is on")
+    ap.add_argument("--hidden-max", type=int, default=256,
+                    help="Max hidden units when --random-hidden is on (inclusive)")
+    ap.add_argument("--seed", type=int, default=42,
+                    help="RNG seed for reproducible random hidden sizes in sweep")
+
+    # Merge all sub-results.csv after sweep
+    ap.add_argument("--merge-sweep", action="store_true",
+                    help="After sweep, merge sub-results into sweep_merged.csv")
 
     return ap.parse_args()
 
 
 def make_ns(d):
-    """Convenience: convert dict to SimpleNamespace for train_main."""
+    """Convert dict to SimpleNamespace for train_main."""
     return types.SimpleNamespace(**d)
 
 
@@ -70,35 +86,52 @@ if __name__ == "__main__":
     os.makedirs(args.outdir, exist_ok=True)
 
     if not args.sweep:
+        # --------------------------
         # Single run
+        # --------------------------
         t0 = time()
         train_main(args)
         dt = time() - t0
         print(f"\n✓ Finished single run in {dt:.2f}s. Artifacts: {args.outdir}")
     else:
-        # Grid sweep: (activation x batch)
+        # --------------------------
+        # Grid sweep: (activation × batch)
+        # --------------------------
         from mpi4py import MPI
-        comm = MPI.COMM_WORLD
-        rank = comm.Get_rank()
+        import random
+
+        comm  = MPI.COMM_WORLD
+        rank  = comm.Get_rank()
         world = comm.Get_size()
 
-        acts    = [s.strip() for s in args.acts.split(',') if s.strip()]
-        batches = [int(s.strip()) for s in args.batches.split(',') if s.strip()]
+        acts    = [s.strip() for s in args.acts.split(",") if s.strip()]
+        batches = [int(s.strip()) for s in args.batches.split(",") if s.strip()]
 
         if rank == 0:
             print(f"Running sweep on world={world}:")
             print(f"  activations: {acts}")
             print(f"  batches    : {batches}")
+            # Seed once on rank 0 so the sequence of hidden samples is reproducible
+            random.seed(args.seed)
 
         for a in acts:
             for b in batches:
-                sub_out = os.path.join(args.outdir, f"act_{a}_b{b}")
+                # Decide hidden size (rank 0 samples, then broadcast)
+                if args.random_hidden:
+                    h_local = random.randint(args.hidden_min, args.hidden_max) if rank == 0 else None
+                    h = comm.bcast(h_local, root=0)
+                else:
+                    h = args.hidden
+
+                # Subdir name includes hidden size for traceability
+                sub_out = os.path.join(args.outdir, f"act_{a}_b{b}_h{h}")
                 os.makedirs(sub_out, exist_ok=True)
+
                 sub_args = make_ns({
                     "train": args.train,
                     "test": args.test,
                     "ycol": args.ycol,
-                    "hidden": args.hidden,
+                    "hidden": h,
                     "act": a,
                     "lr": args.lr,
                     "batch": b,
@@ -108,37 +141,47 @@ if __name__ == "__main__":
                     "save_history": True if args.save_history or args.plot_history else False,
                     "plot_history": True if args.plot_history else False,
                 })
+
                 if rank == 0:
-                    print(f"\n=== Sweep: act={a}, batch={b} → {os.path.relpath(sub_out, ROOT)} ===")
+                    rel = os.path.relpath(sub_out, ROOT)
+                    print(f"\n=== Sweep: act={a}, batch={b}, hidden={h} → {rel} ===")
+
                 t0 = time()
                 try:
                     train_main(sub_args)
                 except Exception as ex:
                     # Keep sweep resilient; report and continue
                     if rank == 0:
-                        print(f"[WARN] Sweep sub-run failed (act={a}, batch={b}): {ex}")
+                        print(f"[WARN] Sweep sub-run failed (act={a}, batch={b}, hidden={h}): {ex}")
                 finally:
                     if rank == 0:
                         print(f"  ↳ elapsed: {time()-t0:.2f}s")
 
-        # Optional merge of results after sweep (rank 0 only)
+        # --------------------------
+        # Optional merge (rank 0)
+        # --------------------------
         if args.merge_sweep:
             if rank == 0:
                 merged_path = os.path.join(args.outdir, "sweep_merged.csv")
                 import csv
                 rows, header = [], None
                 for dp, _, files in os.walk(args.outdir):
+                    # Skip the root outdir; only read leaf subfolders
                     if "results.csv" in files and os.path.abspath(dp) != os.path.abspath(args.outdir):
                         path = os.path.join(dp, "results.csv")
-                        with open(path, newline="") as f:
-                            r = list(csv.DictReader(f))
-                            if not r:
-                                continue
-                            for row in r:
-                                row["subdir"] = os.path.relpath(dp, args.outdir)
-                                rows.append(row)
-                            if header is None:
-                                header = list(r[0].keys()) + ["subdir"]
+                        try:
+                            with open(path, newline="") as f:
+                                r = list(csv.DictReader(f))
+                        except Exception as e:
+                            print(f"[WARN] Could not read {path}: {e}")
+                            continue
+                        if not r:
+                            continue
+                        for row in r:
+                            row["subdir"] = os.path.relpath(dp, args.outdir)
+                            rows.append(row)
+                        if header is None:
+                            header = list(r[0].keys()) + ["subdir"]
                 if rows and header:
                     with open(merged_path, "w", newline="") as f:
                         w = csv.DictWriter(f, fieldnames=header)
