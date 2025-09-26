@@ -1,8 +1,7 @@
 # 📘 DSA5208 – Stochastic Gradient Descent with MPI
 
 ## 📌 Project Overview
-This project implements a **parallel Stochastic Gradient Descent (SGD)** training loop using **MPI (Message Passing Interface)** via the `mpi4py` Python library.  
-The aim is to train a simple feed-forward neural network on large tabular datasets by **distributing computation across processes**.  
+This project implements a **parallel Stochastic Gradient Descent (SGD)** training loop using **MPI** via the `mpi4py` Python library.  
 
 - **Language:** Python 3  
 - **Parallelism:** MPI (`mpi4py`)  
@@ -20,7 +19,7 @@ The aim is to train a simple feed-forward neural network on large tabular datase
 
 2. Create environment & install dependencies:
    ```bash
-   conda create -n dsa5208 python=3.10 -y
+   conda create -n dsa5208 python=3.11 -y
    conda activate dsa5208
    pip install -r requirements.txt
    ```
@@ -116,6 +115,7 @@ mpiexec -n 4 python main.py --sweep \
   --save-history --plot-history --merge-sweep
 ```
 ---
+
 
 ## 📊 Outputs
 - **Metrics CSV** (train/test RMSE, runtime)  
