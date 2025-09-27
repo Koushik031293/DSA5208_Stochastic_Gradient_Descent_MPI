@@ -62,8 +62,8 @@ def parse_args():
                     help="RNG seed for reproducible random hidden sizes in sweep")
 
     # Merge all sub-results.csv after sweep
-    ap.add_argument("--merge-sweep", action="store_true",
-                    help="After sweep, merge sub-results into sweep_merged.csv")
+    ap.add_argument("--merge-sweep", action="store_true")
+    ap.add_argument("--history-filename", type=str, default="loss_curve")
 
     return ap.parse_args()
 
