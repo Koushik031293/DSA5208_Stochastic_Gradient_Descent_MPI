@@ -159,6 +159,21 @@ mpiexec -n 1 python main.py \
 ```
 
 ---
+### 4. Plots and pdf
+run the mpi function with different process , repeat the same code with change in process
+```bash
+python src/report_scaling.py \
+  --csv results/scaling/results.csv \
+  --outdir output/scaling_report
+```
+```bash
+python src/report_scaling.py \
+  --csv results/sweep_run/sweep_merged.csv \
+  --outdir output/sweep_report
+```
+
+
+
 
 
 ## 📊 Outputs
