@@ -143,6 +143,21 @@ mpiexec -n 4 python main.py --sweep \
   --outdir results/sweep_run \
   --save-history --plot-history --merge-sweep
 ```
+
+
+### 4. Process Experiments
+run the mpi function with different process , repeat the same code with change in process
+```bash
+mpiexec -n 1 python main.py \
+  --train data/taxi_train.parquet \
+  --test  data/taxi_test.parquet \
+  --ycol total_amount \
+  --act tanh --hidden 128 --lr 3e-4 --batch 256 \
+  --epochs 40 --patience 10 \
+  --outdir results/scaling --save-history
+
+
+
 ---
 
 
