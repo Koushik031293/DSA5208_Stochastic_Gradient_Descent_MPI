@@ -74,10 +74,10 @@ Data was split into **70% training /30% test** using **deterministic hash-based 
 .
 ├── data/                 # Training & test parquet files
 ├── src/
-│   ├── prep.py           # Data preprocessing / split
-│   ├── train_mpi_sgd.py  # SGD training with MPI
-│   ├── main.py           # Main entry point (handles args, runs training)
-│   └── utils.py          # Helper functions
+│   ├── data_preprocessing.py           # Data preprocessing / split
+│   ├── train_mpi_sgd.py                # SGD training with MPI
+│   ├── main.py                         # Main entry point (handles args, runs training)
+│   └── report_scaling.py               # Plot functions
 ├── output/               # Results, logs, plots, metrics
 ├── requirements.txt      # Python dependencies
 └── README.md             # This file
@@ -156,7 +156,7 @@ mpiexec -n 1 python main.py \
   --epochs 40 --patience 10 \
   --outdir results/scaling --save-history
 
-
+```
 
 ---
 
