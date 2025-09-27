@@ -35,14 +35,15 @@ The following rules were applied before splitting:
 
 ## Train/Test Split
 Data was split into **70% training /30% test** using **deterministic hash-based split**. This ensures reproducibility across machines and MPI workers. 
+
 ---
 
 ## ⚙️ Installation & Setup
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourname/DSA5208_MPI_SGD.git
-   cd DSA5208_MPI_SGD
+   git clone https://github.com/yourname/DSA5208_Stochastic_Gradient_Descent_MPI.git
+   cd DSA5208_Stochastic_Gradient_Descent_MPI
    ```
 
 2. Create environment & install dependencies:
