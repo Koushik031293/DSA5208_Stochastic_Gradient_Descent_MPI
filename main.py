@@ -25,24 +25,24 @@ def parse_args():
     ap = argparse.ArgumentParser(description="DSS5208 Project Runner (MPI)")
 
     # Data
-    ap.add_argument("--train", default="data/taxi_train.parquet", help="Path to TRAIN parquet")
-    ap.add_argument("--test",  default="data/taxi_test.parquet",  help="Path to TEST parquet")
-    ap.add_argument("--ycol",  default="total_amount",            help="Target column name")
+    ap.add_argument("--train", default="data/taxi_train.parquet", help="TRAIN parquet")
+    ap.add_argument("--test",  default="data/taxi_test.parquet",  help="TEST parquet")
+    ap.add_argument("--ycol",  default="total_amount",            help="prediction column")
 
     # Model hyperparameters
-    ap.add_argument("--hidden",   type=int, default=64,                      help="Hidden units (used when not randomising)")
-    ap.add_argument("--act",      choices=["relu","tanh","sigmoid"], default="relu", help="Activation (single run)")
+    ap.add_argument("--hidden",   type=int, default=64, help="Hidden units")
+    ap.add_argument("--act",      choices=["relu","tanh","sigmoid"], default="relu", help="Activation function")
     def comma_list_floats(x):
         return [float(v) for v in x.split(",")]
 
     ap.add_argument("--lr", type=comma_list_floats, default=[1e-3],
                 help="Comma-separated learning rates")
-    ap.add_argument("--batch",    type=int,   default=256,                   help="Mini-batch size (single run)")
-    ap.add_argument("--epochs",   type=int,   default=120,                   help="Max epochs")
-    ap.add_argument("--patience", type=int,   default=20,                    help="Early-stopping patience")
+    ap.add_argument("--batch",    type=int,   default=256, help="Mini-batch size")
+    ap.add_argument("--epochs",   type=int,   default=120, help="Max epochs")
+    ap.add_argument("--patience", type=int,   default=20,  help="Early-stopping patience")
 
     # Outputs
-    ap.add_argument("--outdir",        default="results/exp1", help="Directory to write artifacts")
+    ap.add_argument("--outdir",        default="results/exp1", help="output directory")
     ap.add_argument("--save-history",  action="store_true",    help="Save loss_curve.csv")
     ap.add_argument("--plot-history",  action="store_true",    help="Save loss_curve.png & residuals_hist.png")
 
@@ -73,9 +73,6 @@ def make_ns(d):
     return types.SimpleNamespace(**d)
 
 
-# ------------------------------
-# Runner
-# ------------------------------
 if __name__ == "__main__":
     args = parse_args()
 
@@ -94,9 +91,9 @@ if __name__ == "__main__":
         dt = time() - t0
         print(f"\n✓ Finished single run in {dt:.2f}s. Artifacts: {args.outdir}")
     else:
-        # --------------------------
+        
         # Grid sweep: (activation × batch)
-        # --------------------------
+        
         from mpi4py import MPI
         import random
 
@@ -157,9 +154,8 @@ if __name__ == "__main__":
                     if rank == 0:
                         print(f"  ↳ elapsed: {time()-t0:.2f}s")
 
-        # --------------------------
+    
         # Optional merge (rank 0)
-        # --------------------------
         if args.merge_sweep:
             if rank == 0:
                 merged_path = os.path.join(args.outdir, "sweep_merged.csv")
