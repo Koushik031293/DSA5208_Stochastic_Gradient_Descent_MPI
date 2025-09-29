@@ -38,6 +38,13 @@ Data was split into **70% training /30% test** using **deterministic hash-based 
 
 ---
 
+## 📌 Requirements
+- Python ≥ 3.9  
+- mpi4py ≥ 3.1  
+- pandas, numpy, matplotlib  
+---
+
+
 ## ⚙️ Installation & Setup
 
 1. Clone the repository:
@@ -158,6 +165,71 @@ mpiexec -n 1 python main.py \
 
 ```
 
+### 4. Best in Class Experiments
+  ## Relu
+```bash
+BATCHES=(32 64 128 256 512)
+PROCS=(1 5)    
+
+for p in "${PROCS[@]}"; do
+  for batch in "${BATCHES[@]}"; do
+    RUN_ID="p${p}_relu_h228_bs${batch}_$(date +%Y%m%d_%H%M%S)"
+    echo "Running: procs=${p}, act=relu, hidden=228, batch=${batch}"
+    mpiexec -n ${p} python main.py \
+      --train data/taxi_train.parquet \
+      --test  data/taxi_test.parquet \
+      --ycol total_amount \
+      --act relu --hidden 228 --lr 3e-4 --batch ${batch} \
+      --epochs 40 --patience 10 \
+      --outdir results/scaling/${RUN_ID} --save-history
+    sleep 1
+  done
+done
+
+```
+
+  ## tanh
+```bash
+BATCHES=(32 64 128 256 512)
+PROCS=(1 5)    
+
+for p in "${PROCS[@]}"; do
+  for batch in "${BATCHES[@]}"; do
+    RUN_ID="p${p}_tanh_h100_bs${batch}_$(date +%Y%m%d_%H%M%S)"
+    echo "Running: procs=${p}, act=relu, hidden=228, batch=${batch}"
+    mpiexec -n ${p} python main.py \
+      --train data/taxi_train.parquet \
+      --test  data/taxi_test.parquet \
+      --ycol total_amount \
+      --act tanh --hidden 100 --lr 3e-4 --batch ${batch} \
+      --epochs 40 --patience 10 \
+      --outdir results/scaling/${RUN_ID} --save-history
+    sleep 1
+  done
+done
+
+```
+ ## sigmoid
+```bash
+BATCHES=(32 64 128 256 512)
+PROCS=(1 5)    
+
+for p in "${PROCS[@]}"; do
+  for batch in "${BATCHES[@]}"; do
+    RUN_ID="p${p}_sigmoid_h129_bs${batch}_$(date +%Y%m%d_%H%M%S)"
+    echo "Running: procs=${p}, act=relu, hidden=228, batch=${batch}"
+    mpiexec -n ${p} python main.py \
+      --train data/taxi_train.parquet \
+      --test  data/taxi_test.parquet \
+      --ycol total_amount \
+      --act sigmoid --hidden 100 --lr 3e-4 --batch ${batch} \
+      --epochs 40 --patience 10 \
+      --outdir results/scaling/${RUN_ID} --save-history
+    sleep 1
+  done
+done
+
+```
 ---
 ### 4. Plots and pdf
 run the mpi function with different process , repeat the same code with change in process
@@ -184,14 +256,3 @@ python src/report_scaling.py \
 ---
 
 
-## 📌 Requirements
-- Python ≥ 3.9  
-- mpi4py ≥ 3.1  
-- pandas, numpy, matplotlib  
-
-Install with:
-```bash
-pip install -r requirements.txt
-```
-
----
