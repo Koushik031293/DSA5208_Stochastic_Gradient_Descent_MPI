@@ -1,16 +1,15 @@
-import os, math, time, csv, json, socket
+
+import os, math, time, csv, socket
 from datetime import datetime
-from xml.parsers.expat import model
+from typing import Tuple
 
 import numpy as np
 import pandas as pd
 from mpi4py import MPI
-comm = MPI.COMM_WORLD#new
-rank = comm.Get_rank()#new
-size = comm.Get_size()#new
-def log(msg): print(f"[Rank {rank}] {msg}", flush=True)#new
 
-# Hardening knobs to avoid native-thread crashes on macOS + MPI
+# ------------------------------------------------------------------
+# Environment hardening (macOS + BLAS threads + headless plotting)
+# ------------------------------------------------------------------
 os.environ.setdefault("ARROW_NUM_THREADS", "1")
 os.environ.setdefault("OMP_NUM_THREADS", "1")
 os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
@@ -19,21 +18,26 @@ os.environ.setdefault("VECLIB_MAXIMUM_THREADS", "1")
 os.environ.setdefault("NUMEXPR_MAX_THREADS", "1")
 os.environ.setdefault("MKL_THREADING_LAYER", "SEQUENTIAL")
 
-# Optional: disable interactive backends for remote MPI ranks
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-# ------------------------------------------------------------
-# Feature engineering helpers
-# ------------------------------------------------------------
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+world = comm.Get_size()
 
+def log(msg: str):
+    print(f"[Rank {rank}] {msg}", flush=True)
+
+# ------------------------------------------------------------------
+# Feature helpers
+# ------------------------------------------------------------------
 def _ensure_dt(df: pd.DataFrame, col: str):
     if col in df.columns and not np.issubdtype(df[col].dtype, np.datetime64):
         df[col] = pd.to_datetime(df[col], errors="coerce")
 
 def _add_time_feats(df: pd.DataFrame) -> pd.DataFrame:
-    if {"tpep_pickup_datetime","tpep_dropoff_datetime"}.issubset(df.columns):
+    if {"tpep_pickup_datetime", "tpep_dropoff_datetime"}.issubset(df.columns):
         dur = (df["tpep_dropoff_datetime"] - df["tpep_pickup_datetime"]).dt.total_seconds() / 60.0
         df["duration_min"] = dur.astype("float32")
         df.loc[df["duration_min"] < 0, "duration_min"] = np.nan
@@ -48,42 +52,32 @@ def _add_time_feats(df: pd.DataFrame) -> pd.DataFrame:
     df.drop(columns=["tpep_pickup_datetime","tpep_dropoff_datetime"], errors="ignore", inplace=True)
     return df
 
-def _numeric_feature_columns(df: pd.DataFrame, target: str) -> list[str]:
-    drop_if_present = ["split", "dataset", "set", "part", "fold"]
-    df = df.drop(columns=[c for c in drop_if_present if c in df.columns], errors="ignore")
-    if target in df.columns:
-        X = df.drop(columns=[target])
-    else:
-        X = df
-    return X.select_dtypes(include=[np.number]).columns.tolist()
-
-def _sanitize(a: np.ndarray, cap=1e9) -> np.ndarray:
+def _sanitize(a: np.ndarray, cap: float = 1e9) -> np.ndarray:
     return np.nan_to_num(a, nan=0.0, posinf=cap, neginf=-cap).astype("float32", copy=False)
 
-# ------------------------------------------------------------
-# Sharded Parquet loader
-# ------------------------------------------------------------
-
+# ------------------------------------------------------------------
+# Parquet sharded loader
+# ------------------------------------------------------------------
 def _rowgroup_ranges(pf, start_row: int, end_row: int):
-    """Map a [start_row, end_row) slice to Parquet row-group indices + intra-group offsets."""
+    """Map a [start_row, end_row) slice to Parquet row-group indices and offsets."""
     rg_sizes = [pf.metadata.row_group(i).num_rows for i in range(pf.metadata.num_row_groups)]
-    offsets = np.cumsum([0] + rg_sizes)
-    # row groups covering our slice
+    offsets = np.cumsum([0] + rg_sizes)  # start offset of each row group
+    # row group whose start <= start_row
     rg_start = max(i for i, off in enumerate(offsets) if off <= start_row)
-    # include the last group that still starts before end_row
-    rg_end = min(i for i, off in enumerate(offsets) if off < end_row)
+    # last row group whose start < end_row
+    rg_end   = max(i for i, off in enumerate(offsets) if off <  end_row)
     return rg_start, rg_end, offsets, rg_sizes
 
 def load_parquet_sharded(train_path: str, test_path: str, ycol: str, comm: MPI.Comm):
     """
-    Train: each rank reads only its shard (by rows mapped onto row groups).
-    Test : rank 0 reads once and broadcasts to all ranks.
+    Train: each rank reads only its shard by rows mapped onto row groups.
+    Test : rank 0 reads once and broadcasts full test df to all ranks (for simplicity).
     Returns: (Xtr_local, ytr_local, Xte, yte, feat_cols)
     """
     import pyarrow.parquet as pq
     rank, world = comm.Get_rank(), comm.Get_size()
 
-    # ---------- TRAIN ----------
+    # ---------- TRAIN (row-sharded) ----------
     pf = pq.ParquetFile(train_path)
     nrows = pf.metadata.num_rows
     rows_per_rank = (nrows + world - 1) // world
@@ -93,43 +87,37 @@ def load_parquet_sharded(train_path: str, test_path: str, ycol: str, comm: MPI.C
     if start >= end:
         df_train = pd.DataFrame()
     else:
-        rg_start, rg_end, offsets, rg_sizes = _rowgroup_ranges(pf, start, end)
-        # Read the covering row groups, then slice to exact rows
+        rg_start, rg_end, offsets, _ = _rowgroup_ranges(pf, start, end)
         tbl = pf.read_row_groups(list(range(rg_start, rg_end + 1)))
         df_train = tbl.to_pandas()
         head = start - offsets[rg_start]
         tail = head + (end - start)
         df_train = df_train.iloc[head:tail]
 
-    # Target to float32
     if ycol in df_train.columns:
         df_train[ycol] = pd.to_numeric(df_train[ycol], errors="coerce").astype("float32")
 
-    # Time features
     for col in ("tpep_pickup_datetime","tpep_dropoff_datetime"):
         _ensure_dt(df_train, col)
     df_train = _add_time_feats(df_train)
 
-    # ---------- TEST ----------
+    # ---------- TEST (broadcast) ----------
     if rank == 0:
         df_test = pd.read_parquet(test_path, engine="pyarrow")
         df_test[ycol] = pd.to_numeric(df_test[ycol], errors="coerce").astype("float32")
         for col in ("tpep_pickup_datetime","tpep_dropoff_datetime"):
             _ensure_dt(df_test, col)
         df_test = _add_time_feats(df_test)
+        # Numeric feature columns from test (guaranteed non-empty), excluding target
+        feat_cols = sorted(c for c in df_test.select_dtypes(include=[np.number]).columns if c != ycol)
     else:
         df_test = None
+        feat_cols = None
+
     df_test = comm.bcast(df_test, root=0)
+    feat_cols = comm.bcast(feat_cols, root=0)
 
-    # ---------- Feature columns: intersection across ranks ----------
-    local_cols = set(_numeric_feature_columns(df_train, ycol))
-    all_cols = comm.allgather(local_cols)
-    feat_cols = sorted(set.intersection(*all_cols)) if all_cols else []
-
-    if not feat_cols:  # Fallback
-        feat_cols = sorted(local_cols)
-
-    # ---------- Build arrays ----------
+    # ---------- Build arrays with consistent columns ----------
     Xtr = df_train.reindex(columns=feat_cols).to_numpy(dtype="float32", copy=False)
     ytr = df_train[ycol].to_numpy(dtype="float32", copy=False) if ycol in df_train else np.zeros((0,), dtype="float32")
     Xte = df_test.reindex(columns=feat_cols).to_numpy(dtype="float32", copy=False)
@@ -138,8 +126,7 @@ def load_parquet_sharded(train_path: str, test_path: str, ycol: str, comm: MPI.C
     Xtr = _sanitize(Xtr); Xte = _sanitize(Xte)
     ytr = _sanitize(ytr); yte = _sanitize(yte)
 
-    # ---------- Global mean/std from TRAIN shards ----------
-    # sum, sumsq, count
+    # ---------- Global standardization from TRAIN shards ----------
     sum_local   = Xtr.sum(axis=0, dtype=np.float64) if Xtr.size else np.zeros((len(feat_cols),), dtype=np.float64)
     sumsq_local = (Xtr.astype(np.float64)**2).sum(axis=0) if Xtr.size else np.zeros((len(feat_cols),), dtype=np.float64)
     n_local     = np.array([Xtr.shape[0]], dtype=np.int64)
@@ -166,10 +153,9 @@ def load_parquet_sharded(train_path: str, test_path: str, ycol: str, comm: MPI.C
         print(f"[Loader] feat_dim={len(feat_cols)}  train_local_rows={Xtr.shape[0]}  test_rows={Xte.shape[0]}")
     return Xtr, ytr, Xte, yte, feat_cols
 
-# ------------------------------------------------------------
+# ------------------------------------------------------------------
 # Model
-# ------------------------------------------------------------
-
+# ------------------------------------------------------------------
 def _act(z, kind):
     if kind == "relu":    return np.maximum(0.0, z)
     if kind == "tanh":    return np.tanh(z)
@@ -192,14 +178,11 @@ class OneHiddenNN:
         self.W2 = rng.uniform(-lim2, lim2, size=(n_hidden, 1)).astype("float32")
         self.b2 = np.zeros((1,), dtype="float32")
         self.activation = activation
-        #self.gW1 = np.zeros_like(self.W1)
-        #self.gb1 = np.zeros_like(self.b1)
-        #self.gW2 = np.zeros_like(self.W2)
-        #self.gb2 = np.zeros_like(self.b2)
         self.gW1 = np.zeros_like(self.W1, dtype="float32")
         self.gb1 = np.zeros_like(self.b1, dtype="float32")
         self.gW2 = np.zeros_like(self.W2, dtype="float32")
         self.gb2 = np.zeros_like(self.b2, dtype="float32")
+
     def forward(self, X):
         Z1 = X @ self.W1 + self.b1[None, :]
         A1 = _act(Z1, self.activation)
@@ -228,7 +211,7 @@ class OneHiddenNN:
         self.W2 -= lr * self.gW2
         self.b2 -= lr * self.gb2
 
-    def predict(self, X, batch=8192):
+    def predict(self, X, batch: int = 8192):
         if X.shape[0] == 0:
             return np.zeros((0,), dtype="float32")
         outs = []
@@ -237,39 +220,28 @@ class OneHiddenNN:
             outs.append(yhat)
         return np.vstack(outs).reshape(-1).astype("float32", copy=False)
 
-# ------------------------------------------------------------
+# ------------------------------------------------------------------
 # MPI helpers & training
-# ------------------------------------------------------------
-
+# ------------------------------------------------------------------
 def _mpi_avg_scalar(x: float, comm: MPI.Comm) -> float:
     buf = np.array([float(x)], dtype=np.float64)
     comm.Allreduce(MPI.IN_PLACE, buf, op=MPI.SUM)
     buf /= comm.Get_size()
     return float(buf[0])
 
-#def _allreduce_mean_inplace(arr: np.ndarray, comm: MPI.Comm):
-    tmp = arr.astype(np.float64, copy=True)
-    comm.Allreduce(MPI.IN_PLACE, tmp, op=MPI.SUM)
-    tmp /= comm.Get_size()
-    arr[:] = tmp.astype(arr.dtype, copy=False)
+def _allreduce_mean_inplace(arr: np.ndarray, comm: MPI.Comm):
+    """Allreduce mean with shape/dtype checks to avoid silent hangs."""
+    a = np.ascontiguousarray(arr.astype("float32", copy=False))
+    shapes = comm.allgather(a.shape)
+    dtypes = comm.allgather(str(a.dtype))
+    if len(set(shapes)) != 1 or len(set(dtypes)) != 1:
+        raise RuntimeError(f"Allreduce mismatch: shapes={shapes}, dtypes={dtypes}")
+    tmp = np.empty_like(a)
+    comm.Allreduce(a, tmp, op=MPI.SUM)
+    arr[...] = (tmp / comm.size).astype(arr.dtype, copy=False)
 
-def _allreduce_mean_inplace(arr, comm):
-    """Safe allreduce that enforces matching shape/dtype and avoids IN_PLACE."""
-    a = np.ascontiguousarray(arr.astype("float32", copy=False))   # ← NEW
-    shapes = comm.allgather(a.shape)                               # ← NEW
-    dtypes = comm.allgather(str(a.dtype))                          # ← NEW
-    if len(set(shapes)) != 1 or len(set(dtypes)) != 1:             # ← NEW
-        raise RuntimeError(f"Allreduce mismatch: shapes={shapes}, dtypes={dtypes}")  # ← NEW
-    tmp = np.empty_like(a)                                         # ← NEW
-    comm.Allreduce(a, tmp, op=MPI.SUM)                             # ← NEW
-    arr[...] = (tmp / comm.size).astype(arr.dtype, copy=False)     # ← NEW
-
-# ---------- Eval helper: local SSE & count for safe global RMSE ---------- #new
-def _eval_local_stats(model, X_local: np.ndarray, y_local: np.ndarray, batch: int = 8192):
-    """
-    Compute local SSE and sample count for RMSE aggregation.
-    Returns (sse_local: float64, n_local: float64)
-    """
+def _eval_local_stats(model: OneHiddenNN, X_local: np.ndarray, y_local: np.ndarray, batch: int = 8192) -> Tuple[np.float64, np.float64]:
+    """Compute local SSE and count for RMSE aggregation, with progress logging."""
     X_local = np.asarray(X_local)
     y_local = np.asarray(y_local).reshape(-1)
 
@@ -282,33 +254,21 @@ def _eval_local_stats(model, X_local: np.ndarray, y_local: np.ndarray, batch: in
     for i in range(0, X_local.shape[0], int(batch)):
         xb = X_local[i:i+batch].astype("float32", copy=False)
         yb = y_local[i:i+batch].astype("float32", copy=False)
-
         pred = model.predict(xb, batch=xb.shape[0]).reshape(-1).astype("float32", copy=False)
         diff = (pred.astype("float64") - yb.astype("float64"))
         sse += np.dot(diff, diff)
         n   += np.float64(yb.size)
 
+        # Heartbeat every ~10 million rows
+        if (i // batch) % (10_000_000 // batch) == 0 and i > 0:
+            log(f"Eval progress: {i}/{X_local.shape[0]} rows processed")
+
     return sse, n
-# -----------------------------------------------------------------------
 
-def _rmse_from_shards(model, X_local, y_local, comm: MPI.Comm, batch=8192):
-    if X_local.shape[0] == 0:
-        sse_local, n_local = 0.0, 0
-    else:
-        pred = model.predict(X_local, batch=batch)
-        diff = (pred - y_local).astype("float64", copy=False)
-        sse_local = float(np.dot(diff, diff))
-        n_local = int(diff.shape[0])
-
-    buf = np.array([sse_local, float(n_local)], dtype=np.float64)
-    comm.Allreduce(MPI.IN_PLACE, buf, op=MPI.SUM)
-    tot_sse, tot_n = buf
-    return math.sqrt(tot_sse / max(int(tot_n), 1))
-
-def _train_sgd(model, X_local, y_local, *, lr=3e-4, batch=512, epochs=100,
+def _train_sgd(model: OneHiddenNN, X_local, y_local, *, lr=3e-4, batch=512, epochs=100,
                patience=20, comm=MPI.COMM_WORLD, log_every=5):
-    X_local = X_local.astype("float32", copy=False)                            # ← NEW
-    y_local = y_local.astype("float32", copy=False)                            # ← NEW
+    X_local = X_local.astype("float32", copy=False)
+    y_local = y_local.astype("float32", copy=False)
     rng = np.random.default_rng(123)
     rank = comm.Get_rank()
 
@@ -316,8 +276,10 @@ def _train_sgd(model, X_local, y_local, *, lr=3e-4, batch=512, epochs=100,
     n_local = X_local.shape[0]
 
     for ep in range(1, epochs+1):
-        log(f"Starting epoch {ep}")   #new
+        if rank == 0:
+            print(f"[Epoch {ep:4d}] starting…", flush=True)
         t0 = time.time()
+
         if n_local > 0:
             order = rng.permutation(n_local)
             X_local = X_local[order]
@@ -339,32 +301,24 @@ def _train_sgd(model, X_local, y_local, *, lr=3e-4, batch=512, epochs=100,
                 local_loss = model.loss_mse(Yhat, yb)
                 model.backward(Xb, Z1, A1, Yhat, yb)
 
-            # Debug print once per rank at first epoch before sync:
-            if ep == 1: #new
-                log(f"gW1{model.gW1.shape} {model.gW1.dtype} | " #new
-                    f"gb1{model.gb1.shape} {model.gb1.dtype} | " #new
-                    f"gW2{model.gW2.shape} {model.gW2.dtype} | " #new
-                    f"gb2{model.gb2.shape} {model.gb2.dtype}") #new
-            
-            log("Starting gradient sync") #new
+            if ep == 1 and b == 0:
+                log(f"gW1{model.gW1.shape} {model.gW1.dtype} | gb1{model.gb1.shape} {model.gb1.dtype} | "
+                    f"gW2{model.gW2.shape} {model.gW2.dtype} | gb2{model.gb2.shape} {model.gb2.dtype}")
+                log("Starting gradient sync")
+
             _allreduce_mean_inplace(model.gW1, comm)
             _allreduce_mean_inplace(model.gb1, comm)
             _allreduce_mean_inplace(model.gW2, comm)
             _allreduce_mean_inplace(model.gb2, comm)
-            
-            log("Finished gradient sync") #new
+
+            if ep == 1 and b == 0:
+                log("Finished gradient sync")
+
             for g in (model.gW1, model.gb1, model.gW2, model.gb2):
                 np.clip(g, -1e2, 1e2, out=g)
                 np.nan_to_num(g, nan=0.0, posinf=0.0, neginf=0.0, copy=False)
 
             model.apply(lr)
-            
-            if ep == 1:                                             # ← NEW: one-time shapes print
-                log(f"gW1{model.gW1.shape} {model.gW1.dtype} | "
-                f"gb1{model.gb1.shape} {model.gb1.dtype} | "
-                f"gW2{model.gW2.shape} {model.gW2.dtype} | "
-                f"gb2{model.gb2.shape} {model.gb2.dtype}")
-            log(f"Finished epoch {ep}")
             ep_loss_acc += _mpi_avg_scalar(local_loss, comm)
             ep_cnt += 1
 
@@ -378,12 +332,11 @@ def _train_sgd(model, X_local, y_local, *, lr=3e-4, batch=512, epochs=100,
             best_snap = (model.W1.copy(), model.b1.copy(), model.W2.copy(), model.b2.copy())
 
         if rank == 0 and (ep == 1 or ep % log_every == 0 or ep == epochs):
-            print(f"[Epoch {ep:4d}] loss={ep_loss:.6f} (best {best_loss:.6f}) "
-                  f"steps={ep_cnt} time={time.time()-t0:.2f}s")
+            print(f"[Epoch {ep:4d}] loss={ep_loss:.6f} (best {best_loss:.6f}) steps={ep_cnt} time={time.time()-t0:.2f}s", flush=True)
 
         if patience is not None and since >= patience:
             if rank == 0:
-                print(f"Early stopping at epoch {ep} (no improvement for {patience} epochs).")
+                print(f"Early stopping at epoch {ep} (no improvement for {patience} epochs).", flush=True)
             break
 
     if best_snap is not None:
@@ -391,10 +344,9 @@ def _train_sgd(model, X_local, y_local, *, lr=3e-4, batch=512, epochs=100,
 
     return hist
 
-# ------------------------------------------------------------
+# ------------------------------------------------------------------
 # Results I/O
-# ------------------------------------------------------------
-
+# ------------------------------------------------------------------
 def _save_results(args, hist, tr_rmse, te_rmse, train_time, comm: MPI.Comm):
     if comm.Get_rank() != 0:
         return
@@ -434,12 +386,11 @@ def _save_results(args, hist, tr_rmse, te_rmse, train_time, comm: MPI.Comm):
         plt.xlabel("Epoch"); plt.ylabel("Avg batch loss"); plt.title("Training loss")
         plt.tight_layout(); plt.savefig(os.path.join(outdir, "loss_curve.png"), dpi=120); plt.close()
 
-    print(f"✓ Results saved in {outdir}")
+    print(f"✓ Results saved in {outdir}", flush=True)
 
-# ------------------------------------------------------------
-# Public entrypoint used by your run.py
-# ------------------------------------------------------------
-
+# ------------------------------------------------------------------
+# Public entrypoint used by main.py
+# ------------------------------------------------------------------
 def main(args):
     """
     Expects a namespace with:
@@ -453,63 +404,65 @@ def main(args):
     lr = args.lr[0] if isinstance(args.lr, (list, tuple)) else args.lr
 
     if rank == 0:
-        print(f"[INFO] world={world} act={args.act} hidden={args.hidden} lr={lr} "
-              f"batch={args.batch} epochs={args.epochs}")
+        print(f"[INFO] world={world} act={args.act} hidden={args.hidden} lr={lr} batch={args.batch} epochs={args.epochs}", flush=True)
 
     # --------- Load (sharded) ---------
     Xtr, ytr, Xte, yte, feat_cols = load_parquet_sharded(args.train, args.test, args.ycol, comm)
     d = len(feat_cols)
-    # Enforce input dtypes once (prevents float64/float32 mismatches)           # ← NEW
-    Xtr = Xtr.astype("float32", copy=False)                                    # ← NEW
-    ytr = ytr.astype("float32", copy=False)                                    # ← NEW
-    Xte = Xte.astype("float32", copy=False)                                    # ← NEW
-    yte = yte.astype("float32", copy=False)                                    # ← NEW
+
+    # Ensure dtypes
+    Xtr = Xtr.astype("float32", copy=False)
+    ytr = ytr.astype("float32", copy=False)
+    Xte = Xte.astype("float32", copy=False)
+    yte = yte.astype("float32", copy=False)
     if rank == 0:
-        print(f"[DATA] features={d}; local train rows={Xtr.shape[0]} | test rows (global)={yte.shape[0]}")
+        print(f"[DATA] features={d}; local train rows={Xtr.shape[0]} | test rows (global)={yte.shape[0]}", flush=True)
 
     # --------- Model ---------
-    #model = OneHiddenNN(n_in=d, n_hidden=args.hidden, activation=args.act, seed=2025 + rank)
     model = OneHiddenNN(n_in=d, n_hidden=args.hidden, activation=args.act, seed=2025 + rank)
-    # Normalize model params/grads to float32 across ranks (belt & suspenders)  # ← NEW
-    for name in ("W1","b1","W2","b2","gW1","gb1","gW2","gb2"):                 # ← NEW
-        a = getattr(model, name, None)                                         # ← NEW
-        if a is not None:                                                      # ← NEW
-            setattr(model, name, a.astype("float32", copy=False))              # ← NEW
+    for name in ("W1","b1","W2","b2","gW1","gb1","gW2","gb2"):
+        a = getattr(model, name, None)
+        if a is not None:
+            setattr(model, name, a.astype("float32", copy=False))
 
     # --------- Train ---------
     t0 = time.time()
     hist = _train_sgd(model, Xtr, ytr, lr=lr, batch=args.batch, epochs=args.epochs,
                       patience=args.patience, comm=comm, log_every=5)
-    #local_rmse = np.array(compute_rmse_local(...), dtype='float32') #new
-    #global_rmse = np.empty_like(local_rmse) if rank == 0 else None #new
-    #comm.Reduce(local_rmse, global_rmse, op=MPI.SUM, root=0) #new
-    #if rank == 0: #new
-    #    global_rmse /= comm.size
-    #    log(f"RMSE={global_rmse}")
-    #    save_history(hist, outdir)
 
     # ---- Post-training evaluation: global RMSE via Reduce([SSE, N]) ----
-    sse_local, n_local = _eval_local_stats(model, Xte, yte, batch=8192)    # returns float64
+    sse_local, n_local = _eval_local_stats(model, Xte, yte, batch=8192)
     stats_local  = np.array([sse_local, n_local], dtype="float64")
-    stats_global = np.empty_like(stats_local) if rank == 0 else np.empty(2, dtype="float64")
-
-    comm.Reduce(stats_local, stats_global, op=MPI.SUM, root=0)
+    recvbuf = np.empty_like(stats_local) if rank == 0 else None
+    comm.Reduce(stats_local, recvbuf, op=MPI.SUM, root=0)
 
     if rank == 0:
-        sse_tot, n_tot = float(stats_global[0]), float(stats_global[1])
-        rmse = (sse_tot / max(n_tot, 1.0)) ** 0.5
-        log(f"POST: global RMSE={rmse:.6f} (sse={sse_tot:.2f}, n={int(n_tot)})")
-        # e.g., save history/results here on root
-        # save_history(hist, args.outdir)
-    # --------------------------------------------------------------------
+        sse_tot, n_tot = map(float, recvbuf)
+        rmse_post = (sse_tot / max(n_tot, 1.0)) ** 0.5
+        log(f"POST: global RMSE={rmse_post:.6f} (sse={sse_tot:.2f}, n={int(n_tot)})")
+
     train_time = time.time() - t0
 
     # --------- Evaluate (distributed RMSE using shards) ---------
+    # Keep a second metric if desired
+    def _rmse_from_shards(model, X_local, y_local, comm: MPI.Comm, batch=8192):
+        if X_local.shape[0] == 0:
+            sse_local2, n_local2 = 0.0, 0
+        else:
+            pred = model.predict(X_local, batch=batch)
+            diff = (pred - y_local).astype("float64", copy=False)
+            sse_local2 = float(np.dot(diff, diff))
+            n_local2 = int(diff.shape[0])
+        buf2 = np.array([sse_local2, float(n_local2)], dtype=np.float64)
+        comm.Allreduce(MPI.IN_PLACE, buf2, op=MPI.SUM)
+        tot_sse2, tot_n2 = buf2
+        return math.sqrt(tot_sse2 / max(int(tot_n2), 1))
+
     tr_rmse = _rmse_from_shards(model, Xtr, ytr, comm)
     te_rmse = _rmse_from_shards(model, Xte, yte, comm)
 
     if rank == 0:
-        print("\n=== Results ===")
+        print("\\n=== Results ===")
         print(f"Activation     : {args.act}")
         print(f"Hidden units   : {args.hidden}")
         print(f"Batch size     : {args.batch}")
@@ -517,6 +470,6 @@ def main(args):
         print(f"Epochs run     : {len(hist)}")
         print(f"Train RMSE     : {tr_rmse:.6f}")
         print(f"Test  RMSE     : {te_rmse:.6f}")
-        print(f"Train time (s) : {train_time:.2f}")
+        print(f"Train time (s) : {train_time:.2f}", flush=True)
 
     _save_results(args, hist, tr_rmse, te_rmse, train_time, comm)
