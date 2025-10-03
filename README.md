@@ -223,14 +223,18 @@ done
 ### 5. Rank Experiment 
   ## Relu
   chmod +x run_scaling_then_best_relu.sh
+  
 ./run_scaling_then_best_relu.sh 2>&1 | tee scaling_then_best_relu.log
 
   ## sigmoid
   chmod +x run_scaling_then_best_sigmoid.sh
+
 ./run_scaling_then_best_sigmoid.sh 2>&1 | tee scaling_then_best_sigmoid.log
 
   ## tanh
+
   chmod +x run_scaling_then_best_tanh.sh
+
 ./run_scaling_then_best_tanh.sh 2>&1 | tee scaling_then_best_tanh.log
 
 
@@ -261,6 +265,7 @@ This writes images into:
 Open the Markdown in VS Code/GitHub to view plots inline.
 
 📦 Outputs
+
 	•	CSV: results.csv (train/test RMSE, runtime, hyperparams).
 	•	Loss CSVs: loss_worldX_batchY.csv.
 	•	PNG Charts: RMSE vs processes, loss curves, training time.
