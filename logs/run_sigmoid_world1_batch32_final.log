@@ -1,0 +1,73 @@
+[192.168.1.12:18454] SET PYTHONUNBUFFERED=1
+[192.168.1.12:18454] SET MPLBACKEND=Agg
+[INFO] world=1 act=sigmoid hidden=129 lr=0.0003 batch=32 epochs=20
+[Loader] feat_dim=10  train_local_rows=25995595  test_rows=11136503
+[DATA] features=10; local train rows=25995595 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 129) float32 | gb1(129,) float32 | gW2(129, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:162: RuntimeWarning: overflow encountered in exp
+  if kind == "sigmoid": return 1.0 / (1.0 + np.exp(-z))
+[Epoch    1] loss=9.590819 (best 9.590819) steps=812363 time=79.69s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=5.923789 (best 5.923789) steps=812363 time=79.09s
+[Epoch    6] starting…
+[Epoch    7] starting…
+[Epoch    8] starting…
+[Epoch    9] starting…
+[Epoch   10] starting…
+[Epoch   10] loss=5.233220 (best 5.233220) steps=812363 time=80.49s
+[Epoch   11] starting…
+[Epoch   12] starting…
+[Epoch   13] starting…
+[Epoch   14] starting…
+[Epoch   15] starting…
+[Epoch   15] loss=4.991662 (best 4.991662) steps=812363 time=80.03s
+[Epoch   16] starting…
+[Epoch   17] starting…
+[Epoch   18] starting…
+[Epoch   19] starting…
+[Epoch   20] starting…
+[Epoch   20] loss=4.856930 (best 4.856930) steps=812363 time=79.18s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=3.116763 (sse=108182319.15, n=11136503)
+\n=== Results ===
+Activation     : sigmoid
+Hidden units   : 129
+Batch size     : 32
+Learning rate  : 0.0003
+Epochs run     : 20
+Train RMSE     : 3.105885
+Test  RMSE     : 3.116763
+Train time (s) : 1589.71
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 1606.49s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
