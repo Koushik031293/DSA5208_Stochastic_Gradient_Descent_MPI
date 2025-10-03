@@ -1,0 +1,2072 @@
+>>> Starting sweep at: 2025-10-03T14:01:33Z
+=========================================
+Running: procs=1, batch=32, epochs=5
+=========================================
+[192.168.1.12:19039] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19039] SET MPLBACKEND=Agg
+[INFO] world=1 act=tanh hidden=100 lr=0.0003 batch=32 epochs=5
+[Loader] feat_dim=10  train_local_rows=25995595  test_rows=11136503
+[DATA] features=10; local train rows=25995595 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=7.838846 (best 7.838846) steps=812363 time=71.74s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=5.294470 (best 5.294470) steps=812363 time=71.06s
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=3.242347 (sse=117075984.58, n=11136503)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 32
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.237700
+Test  RMSE     : 3.242347
+Train time (s) : 357.69
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 369.05s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world1_batch32.log
+
+=========================================
+Running: procs=1, batch=64, epochs=5
+=========================================
+[192.168.1.12:19245] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19245] SET MPLBACKEND=Agg
+[INFO] world=1 act=tanh hidden=100 lr=0.0003 batch=64 epochs=5
+[Loader] feat_dim=10  train_local_rows=25995595  test_rows=11136503
+[DATA] features=10; local train rows=25995595 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=8.981765 (best 8.981765) steps=406182 time=40.73s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=5.628041 (best 5.628041) steps=406182 time=40.18s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=3.351950 (sse=125124924.45, n=11136503)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 64
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.345764
+Test  RMSE     : 3.351950
+Train time (s) : 202.55
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 214.88s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world1_batch64.log
+
+=========================================
+Running: procs=1, batch=128, epochs=5
+=========================================
+[192.168.1.12:19365] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19365] SET MPLBACKEND=Agg
+[INFO] world=1 act=tanh hidden=100 lr=0.0003 batch=128 epochs=5
+[Loader] feat_dim=10  train_local_rows=25995595  test_rows=11136503
+[DATA] features=10; local train rows=25995595 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=10.357519 (best 10.357519) steps=203091 time=25.27s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=6.058418 (best 6.058418) steps=203091 time=24.67s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=3.453738 (sse=132839633.03, n=11136503)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 128
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.450602
+Test  RMSE     : 3.453738
+Train time (s) : 125.49
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 137.62s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world1_batch128.log
+
+=========================================
+Running: procs=1, batch=256, epochs=5
+=========================================
+[192.168.1.12:19439] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19439] SET MPLBACKEND=Agg
+[INFO] world=1 act=tanh hidden=100 lr=0.0003 batch=256 epochs=5
+[Loader] feat_dim=10  train_local_rows=25995595  test_rows=11136503
+[DATA] features=10; local train rows=25995595 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=12.044510 (best 12.044510) steps=101546 time=16.39s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=6.871195 (best 6.871195) steps=101546 time=15.86s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=3.660833 (sse=149248024.63, n=11136503)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 256
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.661816
+Test  RMSE     : 3.660833
+Train time (s) : 81.38
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 93.34s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world1_batch256.log
+
+=========================================
+Running: procs=1, batch=512, epochs=5
+=========================================
+[192.168.1.12:19487] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19487] SET MPLBACKEND=Agg
+[INFO] world=1 act=tanh hidden=100 lr=0.0003 batch=512 epochs=5
+[Loader] feat_dim=10  train_local_rows=25995595  test_rows=11136503
+[DATA] features=10; local train rows=25995595 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=14.368798 (best 14.368798) steps=50773 time=11.81s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=7.882057 (best 7.882057) steps=50773 time=11.30s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=3.919683 (sse=171100280.86, n=11136503)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 512
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.926431
+Test  RMSE     : 3.919683
+Train time (s) : 58.57
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 70.67s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world1_batch512.log
+
+=========================================
+Running: procs=2, batch=32, epochs=5
+=========================================
+[192.168.1.12:19545] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19545] SET MPLBACKEND=Agg
+[INFO] world=2 act=tanh hidden=100 lr=0.0003 batch=32 epochs=5
+[Loader] feat_dim=10  train_local_rows=12997798  test_rows=11136503
+[DATA] features=10; local train rows=12997798 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+[Rank 1] Finished gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=9.237193 (best 9.237193) steps=406182 time=40.50s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=5.537824 (best 5.537824) steps=406182 time=39.65s
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=7.510355 (sse=1256318623.29, n=22273006)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 32
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.301844
+Test  RMSE     : 7.510355
+Train time (s) : 200.48
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 211.71s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 211.71s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world2_batch32.log
+
+=========================================
+Running: procs=2, batch=64, epochs=5
+=========================================
+[192.168.1.12:19656] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19656] SET MPLBACKEND=Agg
+[INFO] world=2 act=tanh hidden=100 lr=0.0003 batch=64 epochs=5
+[Loader] feat_dim=10  train_local_rows=12997798  test_rows=11136503
+[DATA] features=10; local train rows=12997798 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Epoch    1] loss=10.842848 (best 10.842848) steps=203091 time=22.56s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=6.068056 (best 6.068056) steps=203091 time=22.19s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=8.211688 (sse=1501909469.94, n=22273006)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 64
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.450332
+Test  RMSE     : 8.211688
+Train time (s) : 112.76
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 123.90s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 123.90s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world2_batch64.log
+
+=========================================
+Running: procs=2, batch=128, epochs=5
+=========================================
+[192.168.1.12:19714] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19714] SET MPLBACKEND=Agg
+[INFO] world=2 act=tanh hidden=100 lr=0.0003 batch=128 epochs=5
+[Loader] feat_dim=10  train_local_rows=12997798  test_rows=11136503
+[DATA] features=10; local train rows=12997798 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Epoch    1] loss=12.884929 (best 12.884929) steps=101546 time=14.22s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=6.914620 (best 6.914620) steps=101546 time=13.55s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=8.373077 (sse=1561525287.14, n=22273006)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 128
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.681361
+Test  RMSE     : 8.373077
+Train time (s) : 70.05
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 80.57s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 80.58s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world2_batch128.log
+
+=========================================
+Running: procs=2, batch=256, epochs=5
+=========================================
+[192.168.1.12:19762] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19762] SET MPLBACKEND=Agg
+[INFO] world=2 act=tanh hidden=100 lr=0.0003 batch=256 epochs=5
+[Loader] feat_dim=10  train_local_rows=12997798  test_rows=11136503
+[DATA] features=10; local train rows=12997798 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Epoch    1] loss=15.714065 (best 15.714065) steps=50773 time=9.03s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=7.972980 (best 7.972980) steps=50773 time=8.62s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=9.053812 (sse=1825751885.03, n=22273006)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 256
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.940276
+Test  RMSE     : 9.053812
+Train time (s) : 45.15
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 55.89s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 55.89s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world2_batch256.log
+
+=========================================
+Running: procs=2, batch=512, epochs=5
+=========================================
+[192.168.1.12:19805] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19805] SET MPLBACKEND=Agg
+[INFO] world=2 act=tanh hidden=100 lr=0.0003 batch=512 epochs=5
+[Loader] feat_dim=10  train_local_rows=12997798  test_rows=11136503
+[DATA] features=10; local train rows=12997798 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Epoch    1] loss=19.608446 (best 19.608446) steps=25387 time=6.44s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=9.215933 (best 9.215933) steps=25387 time=6.08s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=9.244921 (sse=1903641873.81, n=22273006)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 512
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 4.248259
+Test  RMSE     : 9.244921
+Train time (s) : 32.49
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 43.06s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 43.06s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world2_batch512.log
+
+=========================================
+Running: procs=3, batch=32, epochs=5
+=========================================
+[192.168.1.12:19835] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19835] SET MPLBACKEND=Agg
+[INFO] world=3 act=tanh hidden=100 lr=0.0003 batch=32 epochs=5
+[Loader] feat_dim=10  train_local_rows=8665199  test_rows=11136503
+[DATA] features=10; local train rows=8665199 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+[Rank 1] Finished gradient sync
+[Rank 0] Finished gradient sync
+[Rank 2] Finished gradient sync
+[Epoch    1] loss=10.467134 (best 10.467134) steps=270788 time=30.43s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=5.971874 (best 5.971874) steps=270788 time=29.58s
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=8.005487 (sse=2141142791.57, n=33409509)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 32
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.422672
+Test  RMSE     : 8.005487
+Train time (s) : 152.15
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 164.17s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 164.17s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 164.17s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world3_batch32.log
+
+=========================================
+Running: procs=3, batch=64, epochs=5
+=========================================
+[192.168.1.12:19926] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19926] SET MPLBACKEND=Agg
+[INFO] world=3 act=tanh hidden=100 lr=0.0003 batch=64 epochs=5
+[Loader] feat_dim=10  train_local_rows=8665199  test_rows=11136503
+[DATA] features=10; local train rows=8665199 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Rank 2] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Epoch    1] loss=12.429646 (best 12.429646) steps=135394 time=16.67s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=6.735339 (best 6.735339) steps=135394 time=16.36s
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=7.429463 (sse=1844101818.65, n=33409509)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 64
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.629345
+Test  RMSE     : 7.429463
+Train time (s) : 83.94
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 95.92s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 95.92s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 95.92s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world3_batch64.log
+
+=========================================
+Running: procs=3, batch=128, epochs=5
+=========================================
+[192.168.1.12:19990] SET PYTHONUNBUFFERED=1
+[192.168.1.12:19990] SET MPLBACKEND=Agg
+[INFO] world=3 act=tanh hidden=100 lr=0.0003 batch=128 epochs=5
+[Loader] feat_dim=10  train_local_rows=8665199  test_rows=11136503
+[DATA] features=10; local train rows=8665199 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+[Rank 2] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=14.948124 (best 14.948124) steps=67697 time=10.52s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=7.739254 (best 7.739254) steps=67697 time=9.90s
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=7.992330 (sse=2134110650.31, n=33409509)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 128
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.888367
+Test  RMSE     : 7.992330
+Train time (s) : 51.94
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 63.48s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 63.48s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 63.48s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world3_batch128.log
+
+=========================================
+Running: procs=3, batch=256, epochs=5
+=========================================
+[192.168.1.12:20038] SET PYTHONUNBUFFERED=1
+[192.168.1.12:20038] SET MPLBACKEND=Agg
+[INFO] world=3 act=tanh hidden=100 lr=0.0003 batch=256 epochs=5
+[Loader] feat_dim=10  train_local_rows=8665199  test_rows=11136503
+[DATA] features=10; local train rows=8665199 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+[Rank 1] Finished gradient sync
+[Rank 0] Finished gradient sync
+[Rank 2] Finished gradient sync
+[Epoch    1] loss=18.509441 (best 18.509441) steps=33849 time=6.69s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=9.005540 (best 9.005540) steps=33849 time=6.16s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=8.551253 (sse=2443034476.15, n=33409509)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 256
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 4.189638
+Test  RMSE     : 8.551253
+Train time (s) : 33.16
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 45.03s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 45.03s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 45.03s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world3_batch256.log
+
+=========================================
+Running: procs=3, batch=512, epochs=5
+=========================================
+[192.168.1.12:20075] SET PYTHONUNBUFFERED=1
+[192.168.1.12:20075] SET MPLBACKEND=Agg
+[INFO] world=3 act=tanh hidden=100 lr=0.0003 batch=512 epochs=5
+[Loader] feat_dim=10  train_local_rows=8665199  test_rows=11136503
+[DATA] features=10; local train rows=8665199 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Rank 2] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Epoch    1] loss=23.866989 (best 23.866989) steps=16925 time=4.68s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=10.397884 (best 10.397884) steps=16925 time=4.37s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=8.885873 (sse=2637972493.26, n=33409509)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 512
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 4.513556
+Test  RMSE     : 8.885873
+Train time (s) : 24.02
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 35.85s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 35.85s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 35.85s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world3_batch512.log
+
+=========================================
+Running: procs=4, batch=32, epochs=5
+=========================================
+[192.168.1.12:20131] SET PYTHONUNBUFFERED=1
+[192.168.1.12:20131] SET MPLBACKEND=Agg
+[INFO] world=4 act=tanh hidden=100 lr=0.0003 batch=32 epochs=5
+[Loader] feat_dim=10  train_local_rows=6498899  test_rows=11136503
+[DATA] features=10; local train rows=6498899 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 3] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 3] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Rank 2] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Rank 3] Finished gradient sync
+[Epoch    1] loss=11.243267 (best 11.243267) steps=203091 time=23.78s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=6.356114 (best 6.356114) steps=203091 time=23.84s
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 3] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=8.156312 (sse=2963442191.51, n=44546012)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 32
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.526649
+Test  RMSE     : 8.156312
+Train time (s) : 121.04
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 135.32s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 135.32s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 135.32s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 135.32s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world4_batch32.log
+
+=========================================
+Running: procs=4, batch=64, epochs=5
+=========================================
+[192.168.1.12:20193] SET PYTHONUNBUFFERED=1
+[192.168.1.12:20193] SET MPLBACKEND=Agg
+[INFO] world=4 act=tanh hidden=100 lr=0.0003 batch=64 epochs=5
+[Loader] feat_dim=10  train_local_rows=6498899  test_rows=11136503
+[DATA] features=10; local train rows=6498899 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 3] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 3] Starting gradient sync
+[Rank 3] Finished gradient sync
+[Rank 2] Finished gradient sync
+[Rank 0] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Epoch    1] loss=13.540063 (best 13.540063) steps=101546 time=13.18s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=7.153035 (best 7.153035) steps=101546 time=13.47s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 3] Eval progress: 9994240/11136503 rows processed
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=8.411868 (sse=3152054453.85, n=44546012)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 64
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 3.742736
+Test  RMSE     : 8.411868
+Train time (s) : 69.11
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 83.44s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 83.44s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 83.44s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 83.44s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world4_batch64.log
+
+=========================================
+Running: procs=4, batch=128, epochs=5
+=========================================
+[192.168.1.12:20241] SET PYTHONUNBUFFERED=1
+[192.168.1.12:20241] SET MPLBACKEND=Agg
+[INFO] world=4 act=tanh hidden=100 lr=0.0003 batch=128 epochs=5
+[Loader] feat_dim=10  train_local_rows=6498899  test_rows=11136503
+[DATA] features=10; local train rows=6498899 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 3] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 3] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Rank 1] Finished gradient sync
+[Rank 3] Finished gradient sync
+[Rank 2] Finished gradient sync
+[Epoch    1] loss=16.667772 (best 16.667772) steps=50773 time=8.98s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=8.188696 (best 8.188696) steps=50773 time=9.16s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 3] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=8.957758 (sse=3574435623.23, n=44546012)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 128
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 4.000925
+Test  RMSE     : 8.957758
+Train time (s) : 46.88
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 61.05s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 61.05s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 61.05s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 61.05s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world4_batch128.log
+
+=========================================
+Running: procs=4, batch=256, epochs=5
+=========================================
+[192.168.1.12:20290] SET PYTHONUNBUFFERED=1
+[192.168.1.12:20290] SET MPLBACKEND=Agg
+[INFO] world=4 act=tanh hidden=100 lr=0.0003 batch=256 epochs=5
+[Loader] feat_dim=10  train_local_rows=6498899  test_rows=11136503
+[DATA] features=10; local train rows=6498899 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 3] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 3] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 1] Finished gradient sync
+[Rank 3] Finished gradient sync
+[Rank 2] Finished gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=20.887920 (best 20.887920) steps=25387 time=5.75s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=9.472696 (best 9.472696) steps=25387 time=5.61s
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 3] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=9.397149 (sse=3933698709.47, n=44546012)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 256
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 4.304400
+Test  RMSE     : 9.397149
+Train time (s) : 30.23
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 44.35s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 44.35s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 44.35s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 44.35s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world4_batch256.log
+
+=========================================
+Running: procs=4, batch=512, epochs=5
+=========================================
+[192.168.1.12:20351] SET PYTHONUNBUFFERED=1
+[192.168.1.12:20351] SET MPLBACKEND=Agg
+[INFO] world=4 act=tanh hidden=100 lr=0.0003 batch=512 epochs=5
+[Loader] feat_dim=10  train_local_rows=6498899  test_rows=11136503
+[DATA] features=10; local train rows=6498899 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+[Rank 1] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 1] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 3] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 3] Starting gradient sync
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: divide by zero encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: overflow encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:201: RuntimeWarning: invalid value encountered in matmul
+  self.gW2[:] = (A1.T @ diff) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 2] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 2] Starting gradient sync
+[Rank 1] Finished gradient sync
+[Rank 2] Finished gradient sync
+[Rank 3] Finished gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=27.446005 (best 27.446005) steps=12694 time=4.16s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=11.051391 (best 11.051391) steps=12694 time=3.75s
+[Rank 1] Eval progress: 9994240/11136503 rows processed
+[Rank 2] Eval progress: 9994240/11136503 rows processed
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 3] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=9.573380 (sse=4082624390.91, n=44546012)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 512
+Learning rate  : 0.0003
+Epochs run     : 5
+Train RMSE     : 4.633703
+Test  RMSE     : 9.573380
+Train time (s) : 21.38
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 35.27s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 35.27s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 35.27s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 35.27s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Log saved to logs/run_tanh_world4_batch512.log
+
+>>> Selecting best config from the last sweep rows …
+>>> CSV has 82 data rows; taking last 20 for selection (expected 20).
+>>> Best config (from last 20 rows): world=1, batch=32, lr=0.0003
+>>> Re-running best config with epochs=20 …
+[192.168.1.12:20410] SET PYTHONUNBUFFERED=1
+[192.168.1.12:20410] SET MPLBACKEND=Agg
+[INFO] world=1 act=tanh hidden=100 lr=0.0003 batch=32 epochs=20
+[Loader] feat_dim=10  train_local_rows=25995595  test_rows=11136503
+[DATA] features=10; local train rows=25995595 | test rows (global)=11136503
+[Epoch    1] starting…
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: divide by zero encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: overflow encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:187: RuntimeWarning: invalid value encountered in matmul
+  Z1 = X @ self.W1 + self.b1[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: divide by zero encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: overflow encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:205: RuntimeWarning: invalid value encountered in matmul
+  self.gW1[:] = (X.T @ dZ1) / B
+[Rank 0] gW1(10, 100) float32 | gb1(100,) float32 | gW2(100, 1) float32 | gb2(1,) float32
+[Rank 0] Starting gradient sync
+[Rank 0] Finished gradient sync
+[Epoch    1] loss=7.838846 (best 7.838846) steps=812363 time=72.07s
+[Epoch    2] starting…
+[Epoch    3] starting…
+[Epoch    4] starting…
+[Epoch    5] starting…
+[Epoch    5] loss=5.294470 (best 5.294470) steps=812363 time=70.80s
+[Epoch    6] starting…
+[Epoch    7] starting…
+[Epoch    8] starting…
+[Epoch    9] starting…
+[Epoch   10] starting…
+[Epoch   10] loss=5.056914 (best 5.056914) steps=812363 time=72.61s
+[Epoch   11] starting…
+[Epoch   12] starting…
+[Epoch   13] starting…
+[Epoch   14] starting…
+[Epoch   15] starting…
+[Epoch   15] loss=4.994925 (best 4.984137) steps=812363 time=71.03s
+[Epoch   16] starting…
+[Epoch   17] starting…
+[Epoch   18] starting…
+[Epoch   19] starting…
+[Epoch   20] starting…
+[Epoch   20] loss=4.903063 (best 4.903063) steps=812363 time=71.25s
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: divide by zero encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: overflow encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+/Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/src/train_mpi_sgd.py:189: RuntimeWarning: invalid value encountered in matmul
+  Yhat = A1 @ self.W2 + self.b2[None, :]
+[Rank 0] Eval progress: 9994240/11136503 rows processed
+[Rank 0] POST: global RMSE=3.119035 (sse=108340100.89, n=11136503)
+\n=== Results ===
+Activation     : tanh
+Hidden units   : 100
+Batch size     : 32
+Learning rate  : 0.0003
+Epochs run     : 20
+Train RMSE     : 3.105517
+Test  RMSE     : 3.119035
+Train time (s) : 1425.15
+✓ Results saved in /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+
+✓ Finished single run in 1435.34s. Artifacts: /Users/koushik/Desktop/MS/DSA5208/Project/DSA5208_Stochastic_Gradient_Descent_MPI/results/scaling
+✓ Final log saved to logs/run_tanh_world1_batch32_final.log
+>>> Done.

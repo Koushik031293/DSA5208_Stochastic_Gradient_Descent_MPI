@@ -84,10 +84,11 @@ Data was split into **70% training /30% test** using **deterministic hash-based 
 │   ├── data_preprocessing.py           # Data preprocessing / split
 │   ├── train_mpi_sgd.py                # SGD training with MPI
 │   ├── main.py                         # Main entry point (handles args, runs training)
-│   └── report_scaling.py               # Plot functions
-├── output/               # Results, logs, plots, metrics
-├── requirements.txt      # Python dependencies
-└── README.md             # This file
+│   └── report_plots_per_activation.py  # Per-activation gallery
+├── results/                    # Metrics CSVs, loss histories
+├── output/                     # Final plots / reports
+├── requirements.txt
+└── README.md
 ```
 
 ---
@@ -127,17 +128,6 @@ mpiexec -n 4 python main.py \
 
 ### 3. Sweep Experiments
 Grid search over activations and batch sizes:
-```bash
-mpiexec -n 4 python main.py --sweep \
-  --train data/taxi_train.parquet \
-  --test  data/taxi_test.parquet \
-  --ycol total_amount \
-  --hidden 32 --lr 1e-3 --epochs 40 --patience 10 \
-  --acts relu,tanh \
-  --batches 64,128,256 \
-  --outdir results/sweep_run \
-  --save-history --plot-history --merge-sweep
-```
 ```bash
 mpiexec -n 4 python main.py --sweep \
   --train data/taxi_train.parquet \
@@ -230,8 +220,23 @@ for p in "${PROCS[@]}"; do
 done
 
 ```
+### 5. Rank Experiment 
+  ## Relu
+  chmod +x run_scaling_then_best_relu.sh
+./run_scaling_then_best_relu.sh 2>&1 | tee scaling_then_best_relu.log
+
+  ## sigmoid
+  chmod +x run_scaling_then_best_sigmoid.sh
+./run_scaling_then_best_sigmoid.sh 2>&1 | tee scaling_then_best_sigmoid.log
+
+  ## tanh
+  chmod +x run_scaling_then_best_tanh.sh
+./run_scaling_then_best_tanh.sh 2>&1 | tee scaling_then_best_tanh.log
+
+
+
 ---
-### 4. Plots and pdf
+### 📊 6.Plotting & Reporting
 run the mpi function with different process , repeat the same code with change in process
 ```bash
 python src/report_scaling.py \
@@ -243,16 +248,25 @@ python src/report_scaling.py \
   --csv results/sweep_run/sweep_merged.csv \
   --outdir output/sweep_report
 ```
+```bash
+Generates RMSE line, RMSE scatter, loss curves, and a combined training time plot.
+python src/report_plots_per_activation.py \
+  --results results/scaling/results.csv \
+  --outdir results/scaling
+```
+This writes images into:
+	•	results/scaling/per_activation/*.png
+	•	results/scaling/plots_per_activation.md
+
+Open the Markdown in VS Code/GitHub to view plots inline.
+
+📦 Outputs
+	•	CSV: results.csv (train/test RMSE, runtime, hyperparams).
+	•	Loss CSVs: loss_worldX_batchY.csv.
+	•	PNG Charts: RMSE vs processes, loss curves, training time.
+	•	Markdown Reports: plots.md and plots_per_activation.md.
+	•	Logs: per-rank debug logs.
 
 
-
-
-
-## 📊 Outputs
-- **Metrics CSV** (train/test RMSE, runtime)  
-- **Plots** (loss curves, comparison charts)  
-- **Logs** (per-rank progress, debug info)  
-
----
 
 
